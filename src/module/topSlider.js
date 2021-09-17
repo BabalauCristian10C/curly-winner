@@ -3,8 +3,7 @@ const topSlider = () =>{
         fslide = slider.getElementsByClassName("item")[0],
         sslide = slider.getElementsByClassName("item")[1],
         tslide = slider.getElementsByClassName("item")[2];
-    let counter = 1,
-        reverse = false;
+    let counter = 1;
 
     setInterval(()=>{
         counter++;    

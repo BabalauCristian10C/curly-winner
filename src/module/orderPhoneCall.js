@@ -34,6 +34,5 @@ const orderProneCall = () => {
             modalOverlay.style.display = "none";
         }
     })
-
 }
 export default orderProneCall;
