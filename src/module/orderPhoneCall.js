@@ -18,7 +18,6 @@ const orderProneCall = () => {
 
     const closeBtn = document.querySelector(".modal-close");
 
-    console.log(closeBtn)
     document.addEventListener("click", (e)=>{
         const target = e.target;
         if(target.closest(".modal-close") || target.closest(".modal-overlay")){
