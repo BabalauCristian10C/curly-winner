@@ -8,7 +8,32 @@ const orderProneCall = () => {
         if (!modalWindow.classList.contains("callBackActive")){
             modalWindow.classList.add("callBackActive")
         }
+        if (modalWindow.classList.contains("callBackDeactivate")){
+            modalWindow.classList.remove("callBackDeactivate")    
+        }
         modalOverlay.style.display = "inline-block";
+    })
+
+    //closing part
+
+    const closeBtn = document.querySelector(".modal-close");
+
+    console.log(closeBtn)
+    document.addEventListener("click", (e)=>{
+        const target = e.target;
+        if(target.closest(".modal-close") || target.closest(".modal-overlay")){
+            e.preventDefault();
+            if (modalWindow.classList.contains("callBackActive")){
+                modalWindow.classList.remove("callBackActive")
+            }
+            if (!modalWindow.classList.contains("callBackDeactivate")){
+                modalWindow.classList.add("callBackDeactivate")    
+            }
+            setTimeout(()=>{
+                modalWindow.style.display = "none";
+            },500)
+            modalOverlay.style.display = "none";
+        }
     })
 
 }
