@@ -1,6 +1,7 @@
 const formSender = () =>{
     const name = document.querySelector(".form-control"),
         phone = document.querySelector(".tel");
+
     const nameCyr = (event) =>{
         const target = event.target;
         target.value = target.value.replace(/[^А-Яа-яЁё\s]/gi, "")
@@ -31,8 +32,48 @@ const formSender = () =>{
         }
         
     }
+    const phoneCheck = (e) =>{
+        const target = e.target;
+        target.value = target.value.replace(/[^0-9+]/gi, "")
+    }
+
     name.addEventListener("blur", nameCyr);
     phone.addEventListener("blur", phoneCheck);
+
+    const sendServer = (data) => {
+        return fetch('./server.php', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+    };
+
+    const statusMessage = document.createElement("div");
+    statusMessage.textContent = "Loading..."
+    statusMessage.style.cssText = "font-size:2em; color:black;";
+
+    document.querySelector(".sendForm").addEventListener("click", (e)=>{
+        e.preventDefault();
+        document.querySelector(`[name="form-callback"]`).append(statusMessage)
+        let body = {};
+        body.name = name.value;
+        body.phone = phone.value;
+        if(name.value!=="" && phone.value!==""){
+            sendServer(body).then(
+                response=>{
+                    if(response.status==200){
+                        console.log(response.status)
+                        statusMessage.textContent = "Completed"
+                    }
+                }
+            ).catch(error => {statusMessage.textContent = "Error"});
+        } else {
+            statusMessage.textContent = "Error"
+        }
+    })
+
 
 }
 export default formSender;

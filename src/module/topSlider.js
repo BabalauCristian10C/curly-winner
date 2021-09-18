@@ -4,17 +4,22 @@ const topSlider = () =>{
         sslide = slider.getElementsByClassName("item")[1],
         tslide = slider.getElementsByClassName("item")[2];
     let counter = 1;
+    
 
     setInterval(()=>{
-        counter++;    
+        counter++;
+        const curHei = window.scrollY;    
         if(counter === 1){
-            slider.prepend(fslide)    
+            slider.prepend(fslide)
+            window.scrollTo(0,curHei)
         }
         if(counter === 2){
-            slider.prepend(sslide)    
+            slider.prepend(sslide)
+            window.scrollTo(0,curHei)
         }
         if(counter === 3){
-            slider.prepend(tslide)    
+            slider.prepend(tslide)
+            window.scrollTo(0,curHei)
         } 
         if (counter>3){counter = 0}
     },3000)

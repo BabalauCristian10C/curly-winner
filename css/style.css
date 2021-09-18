@@ -11,6 +11,12 @@ body {
 	overflow-x: hidden;
 	font-family: "Open Sans", sans-serif;
 }
+.activated{
+	display:inline-block;
+}
+.deactivated{
+	display:none;
+}
 .main-wrapper {
 	min-height: 100%;
 	height: auto !important;
