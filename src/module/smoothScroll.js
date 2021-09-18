@@ -11,5 +11,16 @@ const smoothScroll = () =>{
             scroller.style.display = "None"  
         }
     })
+    scroller.addEventListener("click",()=>{
+        let heiY = window.scrollY;
+        const scrolFunc = setInterval(()=>{
+            heiY= heiY - 10;
+            if(window.scrollY > 10){
+                window.scrollTo(0, heiY)
+            } else{
+                clearInterval(scrolFunc);
+            }
+        },1)
+    })
 }
 export default smoothScroll;

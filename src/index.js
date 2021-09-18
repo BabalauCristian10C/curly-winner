@@ -3,7 +3,7 @@ import categoriesScroll from "./module/categoriesScroll";
 import topSlider from "./module/topSlider"
 import form from "./module/form"
 import smoothScroll from "./module/smoothScroll"
-
+import accordeon from "./module/accordeon"
 
 window.addEventListener("DOMContentLoaded", ()=>{
     orderProneCall();
@@ -11,4 +11,5 @@ window.addEventListener("DOMContentLoaded", ()=>{
     topSlider();
     form();
     smoothScroll();
+    accordeon();
 })

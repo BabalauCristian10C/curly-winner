@@ -13,6 +13,17 @@ const orderProneCall = () => {
         }
         modalOverlay.style.display = "inline-block";
     })
+    document.querySelector(".button-services").addEventListener('click', (e)=>{
+        e.preventDefault();
+        modalWindow.style.display = "inline-block";
+        if (!modalWindow.classList.contains("callBackActive")){
+            modalWindow.classList.add("callBackActive")
+        }
+        if (modalWindow.classList.contains("callBackDeactivate")){
+            modalWindow.classList.remove("callBackDeactivate")    
+        }
+        modalOverlay.style.display = "inline-block";
+    })
 
     //closing part
 
