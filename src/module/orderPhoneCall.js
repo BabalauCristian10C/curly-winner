@@ -25,6 +25,23 @@ const orderProneCall = () => {
         modalOverlay.style.display = "inline-block";
     })
 
+    document.querySelectorAll(".fancyboxModal").forEach(i=>{   
+        if(i.closest(".services-elements")){
+            i.addEventListener('click', (e)=>{
+                e.preventDefault();
+                modalWindow.style.display = "inline-block";
+                if (!modalWindow.classList.contains("callBackActive")){
+                    modalWindow.classList.add("callBackActive")
+                }
+                if (modalWindow.classList.contains("callBackDeactivate")){
+                    modalWindow.classList.remove("callBackDeactivate")    
+                }
+                modalOverlay.style.display = "inline-block";
+            })
+        }
+    
+    })
+
     //closing part
 
     const closeBtn = document.querySelector(".modal-close");

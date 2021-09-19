@@ -4,6 +4,8 @@ import topSlider from "./module/topSlider"
 import form from "./module/form"
 import smoothScroll from "./module/smoothScroll"
 import accordeon from "./module/accordeon"
+import secSlider from "./module/secSlider"
+
 
 window.addEventListener("DOMContentLoaded", ()=>{
     orderProneCall();
@@ -12,4 +14,5 @@ window.addEventListener("DOMContentLoaded", ()=>{
     form();
     smoothScroll();
     accordeon();
+    secSlider();
 })
