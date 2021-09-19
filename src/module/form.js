@@ -1,7 +1,8 @@
 const formSender = () =>{
     const name = document.querySelector(".form-control"),
-        phone = document.querySelector(".tel");
-
+        phone = document.querySelector(".tel"),
+        modalWindow = document.querySelector(".modal-callback"),
+        modalOverlay = document.querySelector(".modal-overlay");
     const nameCyr = (event) =>{
         const target = event.target;
         target.value = target.value.replace(/[^А-Яа-яЁё\s]/gi, "")
@@ -16,25 +17,16 @@ const formSender = () =>{
             return match;
         })
 
-        if(target.value){
-            if(target.value.length <2){
-                if(!target.classList.contains("unactive"))     
-                {
-                    target.classList.add("unactive");
-                }    
-            }
-            else if (target.value.length > 1){
-                if(target.classList.contains("unactive")) 
-                {
-                    target.classList.remove("unactive")   
-                }  
-            }
-        }
-        
+        if(target.value.length <2){
+            target.value = ""    
+        } 
     }
     const phoneCheck = (e) =>{
         const target = e.target;
         target.value = target.value.replace(/[^0-9+]/gi, "")
+        if (target.value.length > 13 || target.value.length < 7){
+            target.value= ""
+        }
     }
 
     name.addEventListener("blur", nameCyr);
@@ -64,11 +56,29 @@ const formSender = () =>{
             sendServer(body).then(
                 response=>{
                     if(response.status==200){
-                        console.log(response.status)
                         statusMessage.textContent = "Completed"
                     }
+                    setTimeout(()=>{
+                        name.value = ""
+                        phone.value = ""
+                        statusMessage.remove()
+                    },1000)
+                    setTimeout(()=>{
+                        e.preventDefault();
+                        if (modalWindow.classList.contains("callBackActive")){
+                            modalWindow.classList.remove("callBackActive")
+                        }
+                        if (!modalWindow.classList.contains("callBackDeactivate")){
+                            modalWindow.classList.add("callBackDeactivate")    
+                        }
+                        setTimeout(()=>{
+                            modalWindow.style.display = "none";
+                        },500)
+                        modalOverlay.style.display = "none";
+                    },2000)
                 }
             ).catch(error => {statusMessage.textContent = "Error"});
+            
         } else {
             statusMessage.textContent = "Error"
         }
