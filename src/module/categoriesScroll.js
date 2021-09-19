@@ -7,7 +7,15 @@ const categoriesScroll = () =>{
             const topScroll = document.querySelector(l).offsetTop;
             i.addEventListener("click", (e)=>{
                 e.preventDefault()
-                window.scrollTo(0,topScroll)     
+                let l=0;
+                const interval = setInterval(() => {
+                    l = l+20;
+                    window.scrollTo(0,l)
+                    if(l>topScroll){
+                        clearInterval(interval)
+                    }
+                }, 1);
+                     
             })
         })
     })       

@@ -77,10 +77,30 @@ const formSender = () =>{
                         modalOverlay.style.display = "none";
                     },2000)
                 }
-            ).catch(error => {statusMessage.textContent = "Error"});
+            ).catch(error => {
+                statusMessage.textContent = "Error"
+            });
             
         } else {
             statusMessage.textContent = "Error"
+            setTimeout(()=>{
+                name.value = ""
+                phone.value = ""
+                statusMessage.remove()
+            },1000)
+            setTimeout(()=>{
+                e.preventDefault();
+                if (modalWindow.classList.contains("callBackActive")){
+                    modalWindow.classList.remove("callBackActive")
+                }
+                if (!modalWindow.classList.contains("callBackDeactivate")){
+                    modalWindow.classList.add("callBackDeactivate")    
+                }
+                setTimeout(()=>{
+                    modalWindow.style.display = "none";
+                },500)
+                modalOverlay.style.display = "none";
+            },2000)
         }
     })
 
